@@ -5,10 +5,9 @@ import Link from 'next/link';
 import { apiClient } from '@/utils/apiClient';
 
 export const generateStaticParams = async () => {
-  const response = await fetch(
-    'https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json'
+  const data = await apiClient(
+    '/vehicles/GetMakesForVehicleType/car?format=json'
   );
-  const data = await response.json();
 
   const makes = data.Results.map((make: VehicleMake) => make.MakeName);
   const years = Array.from({ length: 11 }, (_, i) => 2015 + i);
