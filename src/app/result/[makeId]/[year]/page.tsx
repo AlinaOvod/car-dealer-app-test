@@ -6,7 +6,7 @@ import { apiClient } from '@/utils/apiClient';
 
 export const generateStaticParams = async () => {
   const data = await apiClient(
-    '/vehicles/GetMakesForVehicleType/car?format=json'
+    'vehicles/GetMakesForVehicleType/car?format=json'
   );
 
   const makes = data.Results.map((make: VehicleMake) => make.MakeName);
