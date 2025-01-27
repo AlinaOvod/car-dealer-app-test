@@ -5,22 +5,9 @@ import Link from 'next/link';
 import { apiClient } from '@/utils/apiClient';
 
 export const generateStaticParams = async () => {
-  // const data = await apiClient(
-  //   'vehicles/GetMakesForVehicleType/car?format=json'
-  // );
-
-  let data;
-  try {
-    data = await apiClient('vehicles/GetMakesForVehicleType/car?format=json');
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    return [];
-  }
-
-  if (!data || !data.Results) {
-    console.error('No results found in the fetched data.');
-    return [];
-  }
+  const data = await apiClient(
+    'vehicles/GetMakesForVehicleType/car?format=json'
+  );
 
   const makes = data.Results.map((make: VehicleMake) => make.MakeId.toString());
   const years = Array.from({ length: 11 }, (_, i) => 2015 + i);
