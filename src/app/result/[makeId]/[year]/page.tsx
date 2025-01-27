@@ -22,7 +22,7 @@ export const generateStaticParams = async () => {
     return [];
   }
 
-  const makes = data.Results.map((make: VehicleMake) => make.MakeName);
+  const makes = data.Results.map((make: VehicleMake) => make.MakeId);
   const years = Array.from({ length: 11 }, (_, i) => 2015 + i);
 
   const paths = makes.flatMap((makeId: string) => {
