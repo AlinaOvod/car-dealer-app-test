@@ -8,6 +8,8 @@ export const apiClient = async (endpoint: string, options?: RequestInit) => {
   const url = `${baseUrl}${endpoint}`;
 
   try {
+    console.log(`url: ${url}`);
+
     const response = await fetch(url, options);
 
     if (!response.ok) {
@@ -19,9 +21,9 @@ export const apiClient = async (endpoint: string, options?: RequestInit) => {
   } catch (error: unknown) {
     if (error instanceof Error) {
       console.error(`API request failed: ${error.message}`);
-      throw error;
     } else {
-      throw new Error('An unknown error occurred');
+      console.error('Unknown error occurred during API request');
     }
+    throw error;
   }
 };
